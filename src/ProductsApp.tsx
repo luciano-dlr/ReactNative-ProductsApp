@@ -15,7 +15,9 @@ export const ProductsApp = () => {
 
   return (
     <>
+    
     <IconRegistry icons={EvaIconsPack} />
+
     <ApplicationProvider {...eva} theme={theme}>
 
       <NavigationContainer>

@@ -4,6 +4,7 @@ import { RegisterScreen } from '../screens/auth/RegisterScreen';
 import { HomeScreen } from '../screens/home/HomeScreen';
 import { ProductScreen } from '../screens/product/ProductScreen';
 import { LoginScreen } from '../screens/auth/LoginScreen';
+import { HomeWorkScreen } from '../screens/homeWork/HomeWorkScreen';
 
 export type RootStackParams = {
     LoadingScreen: undefined;
@@ -11,6 +12,8 @@ export type RootStackParams = {
     RegisterScreen: undefined;
     HomeScreen: undefined;
     ProductScreen: { productId: string };
+    HomeWorkScreen:undefined;
+    
 }
 
 
@@ -20,7 +23,7 @@ const Stack = createStackNavigator<RootStackParams>();
 export const StackNavigator = () => {
     return (
         <Stack.Navigator 
-        initialRouteName='HomeScreen'
+        initialRouteName='HomeWorkScreen'
         screenOptions={{
             headerShown:false
         }}>
@@ -29,6 +32,7 @@ export const StackNavigator = () => {
             <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
             <Stack.Screen name="ProductScreen" component={ProductScreen} />
+            <Stack.Screen name="HomeWorkScreen" component={HomeWorkScreen} />
         </Stack.Navigator>
     );
 }
