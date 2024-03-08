@@ -1,10 +1,17 @@
-import { Input, Layout, Text, Button } from '@ui-kitten/components'
-import React from 'react'
-import { ScrollView, useWindowDimensions } from 'react-native'
-import { MyIcon } from '../../components/ui/MyIcon'
+import React from 'react';
+import { Input, Layout, Text, Button } from '@ui-kitten/components';
+import { ScrollView, useWindowDimensions } from 'react-native';
+import { MyIcon } from '../../components/ui/MyIcon';
+import { StackScreenProps } from '@react-navigation/stack';
+import { RootStackParams } from '../../navigation/StackNavigator';
 
 
-export const LoginScreen = () => {
+interface Props extends StackScreenProps<RootStackParams,'LoginScreen'> {}
+
+
+
+
+export const LoginScreen = ( {navigation}:Props ) => {
 
   const { height } = useWindowDimensions()
 
@@ -16,7 +23,11 @@ export const LoginScreen = () => {
 
         <Layout style={{ paddingTop: height * 0.35 }}>
 
-          <Text category='h1'>Ingresar</Text>
+          <Text 
+          category='h1' 
+          status='primary'
+          
+          >Ingresar</Text>
           <Text category='p2'> Por Favor, ingresae para continuar </Text>
 
         </Layout>
@@ -74,11 +85,11 @@ export const LoginScreen = () => {
             flexDirection: 'row',
             justifyContent: 'center'
           }}>
-          <Text>No tienes cuenta?</Text>
-          <Text status='primary' category='s1' onPress={()=>{}} >  Crear Cuenta</Text>
+          <Text 
+          
+          >No tienes cuenta?</Text>
+          <Text status='primary' category='s1' onPress={ ()=> navigation.navigate('RegisterScreen') } >  Crear Cuenta</Text>
         </Layout>
-
-
 
 
 
