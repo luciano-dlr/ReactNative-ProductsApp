@@ -8,3 +8,5 @@ import {name as appName} from './app.json';
 import { ProductsApp } from './src/ProductsApp';
 
 AppRegistry.registerComponent(appName, () => ProductsApp);
+
+
