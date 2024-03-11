@@ -8,7 +8,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParams } from '../../navigation/StackNavigator';
 
 
-interface Props extends StackScreenProps<RootStackParams, 'LoginScreen'> { }
+interface Props extends StackScreenProps<RootStackParams, 'RegisterScreen'> { }
 
 
 
