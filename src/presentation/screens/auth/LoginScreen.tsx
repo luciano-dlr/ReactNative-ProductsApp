@@ -1,13 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Input, Layout, Text, Button } from '@ui-kitten/components';
-import { ScrollView, useWindowDimensions } from 'react-native';
+import { Alert, ScrollView, TextInput, useWindowDimensions } from 'react-native';
 import { MyIcon } from '../../components/ui/MyIcon';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParams } from '../../navigation/StackNavigator';
 import { API_URL, STAGE } from '@env';
-
-
-
+import { useAuthStore } from '../../store/auth/useAuthStore';
 
 
 
@@ -18,7 +16,34 @@ console.log({API_URL:API_URL,stage:STAGE});
 
 export const LoginScreen = ( {navigation}:Props ) => {
 
+
+  const {login} = useAuthStore()
+
+  const [form, setForm] = useState({
+    email:'',
+    password:'',
+    
+  })
   const { height } = useWindowDimensions()
+
+  const onLogin = async () => {
+    if(form.email.length === 0 || form.password.length === 0){
+      return
+    }
+
+    const wasSuccesful = await login(form.email, form.password);
+    if(wasSuccesful) return;
+
+    Alert.alert('Error', 'User/password incorrectos');
+    
+   
+
+    
+
+
+    
+
+  }
 
 
   return (
@@ -31,7 +56,7 @@ export const LoginScreen = ( {navigation}:Props ) => {
           <Text 
           category='h1' 
           status='primary'
-          
+
           >Ingresar</Text>
           <Text category='p2'> Por Favor, ingresae para continuar </Text>
 
@@ -45,16 +70,21 @@ export const LoginScreen = ( {navigation}:Props ) => {
             placeholder='Correo electronico'
             keyboardType='email-address'
             autoCapitalize='none'
+            value={form.email}
+            onChangeText={ (email) => setForm({...form, email})}
             style={{ marginBottom: 10 }}
             accessoryLeft={<MyIcon name='email-outline' />}
 
           />
+
 
           <Input
 
             placeholder='Contraseña'
             autoCapitalize='none'
             secureTextEntry
+            value={form.password}
+            onChangeText={ (password) => setForm({...form, password})}
             style={{ marginBottom: 10 }}
             accessoryLeft={<MyIcon name='lock-outline' />}
 
@@ -63,13 +93,17 @@ export const LoginScreen = ( {navigation}:Props ) => {
 
         </Layout>
 
+        <Text>{JSON.stringify(form,null,4)}</Text>
+
+        
+
         {/* Space */}
         <Layout style={{ height: 20 }} />
 
         {/* Button */}
         <Layout>
           <Button
-            onPress={() => { }}
+            onPress={onLogin}
             accessoryRight={<MyIcon name='arrow-forward-outline' white />}
 
           >
