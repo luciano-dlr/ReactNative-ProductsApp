@@ -1,31 +1,17 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import { Button, Layout, Text } from '@ui-kitten/components';
+import { Button, Layout, Spinner, Text } from '@ui-kitten/components';
 
 export const LoadingScreen = () => {
   return (
-    <Layout>
+    
+    <Layout style={{flex:1,justifyContent:'center',alignItems:'center'}}>
 
-      <Text
-        style={styles.text}
-        category='h1'
-      >
-        Loading Screen
-      </Text>
-
-      <Button>Cerrar Session</Button>
+      <Spinner status='primary' size='large'/>
+    
 
     </Layout>
   )
 }
 
-const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  text: {
-    margin: 2,
-  },
-});
 

@@ -15,6 +15,8 @@ export const LoginScreen = ({ navigation }: Props) => {
 
   const { login } = useAuthStore()
   const [isPosting, setIsPosting] = useState(false)
+
+  
   
   const [form, setForm] = useState({
     email: '',
@@ -27,6 +29,9 @@ export const LoginScreen = ({ navigation }: Props) => {
     const wasSuccessful = await login(form.email, form.password);
     if (wasSuccessful) {
       setIsPosting(true)
+      navigation.navigate('HomeScreen')
+      
+      
     }else {
       Alert.alert('Error', 'Usuario o contraseña incorrectos');
       setIsPosting(false)
@@ -76,11 +81,7 @@ export const LoginScreen = ({ navigation }: Props) => {
 
         {/* Button */}
         <Layout>
-          <Button
-          disabled={isPosting}
-            onPress={onLogin}
-            accessoryRight={<MyIcon name='arrow-forward-outline' white />}
-          >
+          <Button disabled={isPosting} onPress={onLogin} accessoryRight={<MyIcon name='arrow-forward-outline' white />}>
             Ingesar
           </Button>
         </Layout>

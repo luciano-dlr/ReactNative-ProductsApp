@@ -6,6 +6,7 @@ import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
 import { useColorScheme } from 'react-native';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { AuthProvider } from './presentation/providers/AuthProvider';
 
 export const ProductsApp = () => {
 
@@ -33,7 +34,11 @@ export const ProductsApp = () => {
           notification:theme['color-primary-500']
         }
       }}>
+
+      <AuthProvider>
         <StackNavigator />
+      </AuthProvider>
+
       </NavigationContainer>
 
     </ApplicationProvider>
